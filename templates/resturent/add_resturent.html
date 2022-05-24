@@ -1,0 +1,181 @@
+{% extends 'core/main.html' %}
+{% block title %}Add Resturent{% endblock %}
+{% load static%}
+
+{% block content %}
+  
+
+<div class="container contact">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="contact-info">
+        <img src="https://image.ibb.co/kUASdV/contact-image.png" alt="image"/>
+        <h2>Add Resturent</h2>
+        <h4>We would love to hear from you !</h4>
+      </div>
+    </div>
+
+    <div class="col-md-9">
+      {% if messages %}
+        <div class="alert alert-success">
+          {% for message in messages %}
+            {{ message }}
+          {% endfor %}
+        </div>
+      {% endif %}    
+
+       <form action="{% url 'resturent:add-resturent' %}" method="POST">
+          {% csrf_token %}
+        <h3>Enter Details </h3>
+        <div class="mb-3 mt-3">
+
+          <label class="form-label">Resturent Name :</label>
+          <input type="text" class="form-control" placeholder="Enter Resturent Name" name="resturent_name" required>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <label class="form-label">Email :</label>
+            <input type="email" class="form-control" placeholder="Enter email" name="email" required>
+          </div>
+          
+          <div class="col">
+            <label class="form-label">Phone :</label>
+            <input type="mobile" class="form-control" placeholder="Enter Phone Number" name="phone" required>
+          </div>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <h3>Enter Location</h3>
+        <hr>
+
+
+        <div class="mb-3">
+          <label class="form-label">Address :</label>
+          <textarea class="form-control" name="address" placeholder="Address" required></textarea>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <label class="form-label">City :</label>
+            <input type="text" class="form-control" placeholder="Enter City Name" name="city" required>
+          </div>
+          
+          <div class="col">
+            <label class="form-label">Country :</label>
+            <select class="form-select" name="country">
+                <option value="India">India</option>
+            </select> 
+          </div>
+        </div>
+        <br>
+
+        <hr>
+        <br>
+        <h3>Enter Booking Details</h3>
+        <hr>
+        <div class="row">
+          
+          
+          <div class="col">
+            <label class="form-label">Booking Price :</label>
+            <input type="number" class="form-control" placeholder="Enter Booking Price" name="booking_price">
+          </div>
+
+          <div class="col">
+            <label class="form-label">Booking Type :</label>
+            <select class="form-select" name="booking_type">
+                <option value="Per Hour">Per Hour</option>
+                <option value="Per Person">Per Person</option>
+                <option value="Per Day">Per Day</option>
+            </select> 
+          </div>
+
+          <div class="col">
+            <label class="form-label">Booking Status :</label>
+            <select class="form-select" name="booking_status">
+                <option value="Open">Open</option>
+                <option value="Close">Close</option>
+                <option value="Not Available">Not Available</option>
+            </select> 
+          </div>
+        </div><br>
+        <div class="mb-3">
+          <label class="form-label">Time & Days Available :</label>
+          <textarea class="form-control" name="timing_days_available" placeholder="eg : 9:00 am-5:00 pm, Mon-Fri" required></textarea>
+        </div>
+        <br>
+
+        <hr>
+        <br>
+        <h3>Enter Cafeteria Details</h3>
+        <hr>
+        <div class="row">
+          <div class="col">
+            <label class="form-label">Cafeteria :</label>
+            <select class="form-select" name="cafeteria">
+                <option value="Available">Available</option>
+                <option value="Not Available">Not Available</option>
+            </select> 
+          </div>
+          
+
+          <div class="col">
+            <label class="form-label">Wifi :</label>
+            <select class="form-select" name="wifi">
+                <option value="Free">Free</option>
+                <option value="Paid">Paid</option>
+                <option value="Not Available">Not Available</option>
+            </select> 
+          </div>
+        </div>
+        <br>
+
+        <div class="mb-3">
+          <label class="form-label">Cafeteria Details :</label>
+          <textarea class="form-control" name="cafeteria_details" placeholder="Enter the details of cafeteria(Optional)"></textarea>
+          <br>
+           <label class="form-label">Sitting Details :</label>
+          <textarea class="form-control" name="sitting_details" placeholder="Enter seating details. How will you manage employess seating." required></textarea>
+        </div>
+        <br>
+
+        <hr>
+        <br>
+        <h3>Enter Resturent Other Details</h3>
+        <hr>
+        <div class="mb-3">
+          <label class="form-label">Enter Other Details :</label>
+          <textarea class="form-control" name="resturent_other_details" placeholder="Enter the other details of resturent(Optional)"></textarea>
+           
+        </div>
+
+        
+        <div class="mb-3">
+          <label class="form-label">Image :</label>
+          <input type="file" class="form-control" name="image" required>
+        </div>
+
+        <div class="form-check mb-3">
+          <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" required> Check Details Again
+          </label>
+        </div>
+        
+
+        <div class="d-grid gap-2">
+          <input class="btn btn-danger" type="reset">
+          <input class="btn btn-primary" type="submit" value="Submit">
+        </div>
+      
+      </form> 
+      
+
+
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

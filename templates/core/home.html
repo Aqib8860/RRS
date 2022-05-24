@@ -1,0 +1,92 @@
+{% extends 'core/main.html' %}
+{% block title %}Home{% endblock %}
+{% load static%}
+
+{% block content %}
+
+<div class="container-fluid p-5 text-white text-center" style="background-image: url('{% static 'images/flex.jpg' %}');">
+
+  <h1>RRS</h1>
+  <p style="font-size: 25px;">Let's Find The Special Places For Work..!</p> 
+</div>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-sm-2">
+
+      <hr class="d-sm-none">
+    </div>
+
+    <div class="col-sm-8">
+      {% for res in resturent %}
+      <p class="fs-1 ">{{ res.name }}</p>
+      <h5>{{ res.timing_days_available }}
+
+      </h5>
+      <img src="{{ res.imageurl }}" style="width: 500px;"> 
+
+      <p class="fs-3">
+        Price : Rs {{ res.booking_price }}/{{ res.booking_type }},  {{ res.city }}
+      </p>
+      
+      <a href="#" class="btn btn-primary" disabled>Booking {{res.booking_status }}</a>  
+      <a href="#" class="btn btn-primary" disabled>Cafeteria {{ res.cafeteria }}</a>
+      <a href="#" class="btn btn-primary" disabled>Wifi {{ res.wifi }}</a>
+      <br><br>
+      <p class="fs-5">{{ res.resturent_other_details }}</p><a href="">See more...</a>
+      {% endfor %}
+      
+    </div>
+  </div>
+</div>
+<hr>
+<h2 style="text-align:center; color: slategray;">Trending Resturents</h2>
+
+<div class="container">
+  <div class="row">
+   {% for res in resturent %}
+    <div class="col">
+      
+      <div class="card" style="width: 18rem;">
+        <img src="{{ res.imageurl }}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{ res.name }}</h5>
+          <p class="card-text">{{ res.resturent_other_details }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Rs : {{ res.booking_price }}/{{ res.booking_type }}</li>
+          <li class="list-group-item">{{ res.city }}</li>
+          <li class="list-group-item">
+            Booking : {{res.booking_status }}
+          </li>
+        </ul>
+        <div class="card-body">
+          
+          <a href="#" class="card-link">See Details</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    <div class="col">
+      <div class="card" style="width: 18rem;">
+        <img src="" class="card-img-top fakeimg" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Rs {{ res.booking_price }}/{{ res.booking_type }}</li>
+          <li class="list-group-item">A second item</li>
+          <li class="list-group-item">A third item</li>
+        </ul>
+        <div class="card-body">
+          <a href="#" class="card-link">Card link</a>
+          <a href="#" class="card-link">Another link</a>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+{% endblock %}
